@@ -30,8 +30,8 @@ export const LoginForm = () => {
 
   const navigate = useNavigate()
 
-  const handleOnClick = () => {
-    login(username, password)
+  const handleOnClick = async () => {
+    await login(username, password)
     navigate('/home')
   }
 
