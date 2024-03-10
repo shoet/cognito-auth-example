@@ -1,5 +1,6 @@
 import { useAuthContext } from '@/context/AuthContext'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 const TextField = styled.input`
@@ -25,12 +26,13 @@ export const LoginForm = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
-  const { user, login, logout } = useAuthContext()
+  const { login } = useAuthContext()
+
+  const navigate = useNavigate()
 
   const handleOnClick = () => {
-    console.log('username:', username)
-    console.log('password:', password)
-    login()
+    login(username, password)
+    navigate('/home')
   }
 
   return (

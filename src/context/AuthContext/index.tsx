@@ -1,8 +1,15 @@
-import { PropsWithChildren, createContext, useContext, useState } from 'react'
+import {
+  PropsWithChildren,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
+import { useNavigate } from 'react-router-dom'
 
 type AuthContextData = {
   user?: User
-  login: () => void
+  login: (email: string, password: string) => void
   logout: () => void
 }
 
@@ -17,7 +24,9 @@ export const AuthContextProvider = (props: PropsWithChildren) => {
   const { children } = props
   const [user, setUser] = useState<User>()
 
-  const loginFunc = () => {
+  const loginFunc = (email: string, password: string) => {
+    console.log(email)
+    console.log(password)
     const testUser: User = {
       email: 'test@example.com',
     }
@@ -35,4 +44,15 @@ export const AuthContextProvider = (props: PropsWithChildren) => {
   }
 
   return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>
+}
+
+export const AuthGuard = () => {
+  const { user } = useAuthContext()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (user === undefined) {
+      navigate('/login')
+    }
+  })
 }
