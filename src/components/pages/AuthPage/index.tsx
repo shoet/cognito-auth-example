@@ -1,4 +1,10 @@
+import { LoginForm } from '@/components/organisms/LoginForm'
+
 export const AuthPage = () => {
-  // TODO: 認証Guard
-  return <div>Auth Page</div>
+  return (
+    <>
+      <h1>認証ページ</h1>
+      <LoginForm />
+    </>
+  )
 }
