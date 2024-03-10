@@ -1,4 +1,4 @@
-import { login } from '@/service/login'
+import { login, logout } from '@/service/login'
 import {
   PropsWithChildren,
   createContext,
@@ -41,7 +41,13 @@ export const AuthContextProvider = (props: PropsWithChildren) => {
   }
 
   const logoutFunc = async () => {
-    setUser(undefined)
+    try {
+      await logout()
+      setUser(undefined)
+    } catch (err) {
+      console.log('### auth error')
+      console.log(err)
+    }
   }
 
   const data: AuthContextData = {
