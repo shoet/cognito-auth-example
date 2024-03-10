@@ -1,11 +1,14 @@
 import './App.css'
 import { Outlet } from 'react-router-dom'
 import { AuthContextProvider } from './context/AuthContext'
+import { Layout } from './components/templates/Layout'
 
 function App() {
   return (
     <AuthContextProvider>
-      <Outlet />
+      <Layout>
+        <Outlet />
+      </Layout>
     </AuthContextProvider>
   )
 }
