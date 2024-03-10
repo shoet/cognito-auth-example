@@ -1,3 +1,4 @@
+import { useAuthContext } from '@/context/AuthContext'
 import { useState } from 'react'
 import styled from 'styled-components'
 
@@ -24,9 +25,12 @@ export const LoginForm = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
+  const { user, login, logout } = useAuthContext()
+
   const handleOnClick = () => {
     console.log('username:', username)
     console.log('password:', password)
+    login()
   }
 
   return (
